@@ -8,6 +8,8 @@
 
 Practica els **21 temes** del temari, supera **exàmens oficials simulats** i repassa els teus errors fins a clavar-los. Tot en una app d'escriptori, ràpida i **100 % offline**.
 
+🟢 **Codi obert (open source) i totalment gratuït.** Si vols que el projecte segueixi viu i actualitzat, [fes una donació](#-suport-al-projecte). 💛
+
 <br>
 
 ![Electron](https://img.shields.io/badge/Electron-28-47848F?logo=electron&logoColor=white)
@@ -95,13 +97,15 @@ npm run build-installer  # → instal·lador NSIS
 
 ## 💛 Suport al projecte
 
-Si aquesta app t'ajuda a preparar l'oposició, pots **convidar-me a un cafè** ☕ i ajudar a mantenir el projecte viu:
+Aquest projecte és **open source** i **gratuït** — i ho seguirà sent. Però mantenir-lo viu (afegir preguntes, actualitzar el temari, corregir errades i treure noves versions) requereix moltes hores de feina.
+
+**Si vols que el projecte continuï i segueixi creixent, considera fer una donació.** Cada aportació, per petita que sigui, ajuda directament a que això tiri endavant. ☕🔥
 
 - 💳 **PayPal:** [paypal.me/furnedesigns](https://paypal.me/furnedesigns)
 - 📱 **Bizum:** `+34 635 165 846`
 - ✉️ **Contacte:** [support@furnedesigns.com](mailto:support@furnedesigns.com)
 
-Gràcies de tot cor! Cada aportació compta. 🔥
+Gràcies de tot cor! 💛
 
 ---
 
