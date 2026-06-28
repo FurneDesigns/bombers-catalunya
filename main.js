@@ -14,7 +14,8 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
-      nodeIntegration: false
+      nodeIntegration: false,
+      sandbox: false   // cal per a que el preload pugui usar require('fs') i exposar electronAPI
     },
     title: 'Bombers Test - Generalitat de Catalunya',
     backgroundColor: '#0a0a1a',

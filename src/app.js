@@ -188,24 +188,29 @@ function closeOverlays() {
 // PROGRESS PERSISTENCE
 // ============================================================
 async function loadProgress() {
+  // 1) Prova el fitxer via IPC (persistència principal)
   try {
-    if (window.electronAPI) {
+    if (window.electronAPI && window.electronAPI.loadProgress) {
       const saved = await window.electronAPI.loadProgress();
-      if (saved) Object.assign(STATE.progress, saved);
+      if (saved) { Object.assign(STATE.progress, saved); return; }
     }
-  } catch(e) {
+  } catch(e) { /* continua amb el fallback */ }
+  // 2) Fallback localStorage (i recuperació de progrés antic)
+  try {
     const raw = localStorage.getItem('bombers_progress');
     if (raw) Object.assign(STATE.progress, JSON.parse(raw));
-  }
+  } catch(e) { /* res a fer */ }
 }
 
 async function saveProgress() {
+  // Sempre guarda a localStorage com a còpia de seguretat...
+  try { localStorage.setItem('bombers_progress', JSON.stringify(STATE.progress)); } catch(e) {}
+  // ...i al fitxer via IPC si està disponible (persistència principal)
   try {
-    if (window.electronAPI) await window.electronAPI.saveProgress(STATE.progress);
-    else localStorage.setItem('bombers_progress', JSON.stringify(STATE.progress));
-  } catch(e) {
-    localStorage.setItem('bombers_progress', JSON.stringify(STATE.progress));
-  }
+    if (window.electronAPI && window.electronAPI.saveProgress) {
+      await window.electronAPI.saveProgress(STATE.progress);
+    }
+  } catch(e) { /* la còpia de localStorage ja s'ha desat */ }
 }
 
 // ============================================================
