@@ -253,6 +253,9 @@ const App = {
     } else { document.getElementById('globalPercent').textContent = '0'; }
     document.getElementById('headerPoints').textContent = p.points.toLocaleString();
     document.getElementById('headerPointsExams').textContent = p.points.toLocaleString();
+    // Any actual al subtítol
+    const yEl = document.getElementById('currentYear');
+    if (yEl) yEl.textContent = new Date().getFullYear();
     // Comptador de preguntes fallades
     const failedN = (p.failedQuestions || []).length;
     const reviewSub = document.getElementById('reviewCount');
