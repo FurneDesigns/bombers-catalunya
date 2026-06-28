@@ -1,0 +1,56 @@
+{
+  "name": "bombers-test-app",
+  "version": "1.0.0",
+  "description": "App d'estudi per a les oposicions de Bombers de la Generalitat de Catalunya",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable",
+    "build-installer": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "cat.bomberstest.app",
+    "productName": "Bombers Test - Generalitat de Catalunya",
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Bombers Test"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "assets/**/*"
+    ]
+  },
+  "author": "FurneDesigns (https://furnedesigns.com)",
+  "license": "MIT",
+  "homepage": "https://furnedesigns.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FurneDesigns/bombers-catalunya.git"
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3",
+    "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "^6.0.227"
+  }
+}

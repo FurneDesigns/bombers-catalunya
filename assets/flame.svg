@@ -1,0 +1,56 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b1b3a"/>
+      <stop offset="1" stop-color="#080814"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.62" r="0.55">
+      <stop offset="0" stop-color="#ff7a18" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ff7a18" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="outer" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#ffcf3f"/>
+      <stop offset="0.35" stop-color="#ff7a18"/>
+      <stop offset="0.75" stop-color="#ff3a17"/>
+      <stop offset="1" stop-color="#d81f1f"/>
+    </linearGradient>
+    <linearGradient id="inner" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#fff6c2"/>
+      <stop offset="0.5" stop-color="#ffe14d"/>
+      <stop offset="1" stop-color="#ff9c1a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="256" height="256" rx="52" fill="url(#bg)"/>
+  <rect x="0" y="0" width="256" height="256" rx="52" fill="url(#glow)"/>
+
+  <!-- outer flame -->
+  <path fill="url(#outer)" d="
+    M128 26
+    C 150 70 138 92 150 112
+    C 160 128 188 130 196 162
+    C 206 200 176 236 128 236
+    C 84 236 56 206 56 168
+    C 56 132 84 120 96 96
+    C 104 80 102 64 112 52
+    C 116 70 124 76 128 96
+    C 134 78 132 50 128 26
+    Z"/>
+
+  <!-- inner flame -->
+  <path fill="url(#inner)" d="
+    M132 104
+    C 140 128 130 140 142 156
+    C 152 170 166 172 166 192
+    C 166 214 150 228 128 228
+    C 104 228 90 210 90 188
+    C 90 166 110 158 116 138
+    C 120 126 120 118 124 110
+    C 127 122 130 124 132 132
+    C 135 122 134 112 132 104
+    Z"/>
+
+  <!-- hot core -->
+  <ellipse cx="128" cy="196" rx="20" ry="26" fill="#fff7d6" opacity="0.9"/>
+</svg>

@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Artefactes de desenvolupament
+pdf_text.txt
+shot.png
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

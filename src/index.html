@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bombers Test - Generalitat de Catalunya</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- PANTALLA DE CÀRREGA -->
+  <div id="screen-loading" class="screen active">
+    <div class="loading-container">
+      <div class="fire-logo">
+        <div class="flame flame-1"></div>
+        <div class="flame flame-2"></div>
+        <div class="flame flame-3"></div>
+        <div class="flame-base"></div>
+      </div>
+      <h1 class="loading-title">BOMBERS TEST</h1>
+      <p class="loading-subtitle">Generalitat de Catalunya</p>
+      <div class="loading-bar-wrap"><div class="loading-bar" id="loadingBar"></div></div>
+    </div>
+  </div>
+
+  <!-- MENÚ PRINCIPAL -->
+  <div id="screen-menu" class="screen">
+    <div class="menu-bg">
+      <div class="fire-particle" style="left:8%;animation-delay:0s"></div>
+      <div class="fire-particle" style="left:24%;animation-delay:1.1s"></div>
+      <div class="fire-particle" style="left:42%;animation-delay:2.2s"></div>
+      <div class="fire-particle" style="left:58%;animation-delay:.6s"></div>
+      <div class="fire-particle" style="left:73%;animation-delay:1.7s"></div>
+      <div class="fire-particle" style="left:90%;animation-delay:.3s"></div>
+    </div>
+    <div class="menu-content">
+      <div class="menu-header">
+        <div class="menu-kicker">Oposicions · Generalitat de Catalunya</div>
+        <h1 class="menu-title"><span class="t-fill">BOMBERS</span><span class="t-outline">TEST</span></h1>
+        <p class="menu-subtitle">Oposició 2018 · Bases 81/18 · 21 temes</p>
+        <div class="title-rule"></div>
+      </div>
+
+      <div class="menu-console">
+        <div class="stats-bar">
+          <div class="stat-item is-fire"><span class="stat-num" id="totalPoints">0</span><span class="stat-label">Punts</span></div>
+          <div class="stat-item"><span class="stat-num"><span id="levelsCompleted">0</span>/21</span><span class="stat-label">Nivells</span></div>
+          <div class="stat-item"><span class="stat-num"><span id="globalPercent">0</span>%</span><span class="stat-label">Encerts</span></div>
+        </div>
+
+        <div class="menu-buttons">
+          <button class="btn-menu btn-primary" onclick="App.showLevels()">
+            <span class="btn-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg></span>
+            <span class="btn-tt"><span class="btn-text">Tests</span><span class="btn-sub">Practica tema per tema</span></span>
+          </button>
+          <button class="btn-menu btn-secondary" onclick="App.showExams()">
+            <span class="btn-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9.5 4V2.8h5V4"/><path d="M9 11h6M9 15h4"/></svg></span>
+            <span class="btn-tt"><span class="btn-text">Exàmens</span><span class="btn-sub">Tests oficials complets</span></span>
+          </button>
+          <button class="btn-menu btn-review" id="btnReview" onclick="App.startReview()">
+            <span class="btn-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22V3.5"/><path d="M5 4.2h13l-2.4 4 2.4 4H5"/></svg></span>
+            <span class="btn-tt"><span class="btn-text">Preguntes Fallades</span><span class="btn-sub" id="reviewCount">Cap error pendent</span></span>
+          </button>
+          <button class="btn-menu btn-info" onclick="App.showStats()">
+            <span class="btn-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="13"/><line x1="10" y1="21" x2="10" y2="4"/><line x1="16" y1="21" x2="16" y2="9"/><line x1="2.5" y1="21" x2="21.5" y2="21"/></svg></span>
+            <span class="btn-tt"><span class="btn-text">Estadístiques</span><span class="btn-sub">El teu progrés detallat</span></span>
+          </button>
+          <button class="btn-menu btn-warning" onclick="App.resetProgress()">
+            <span class="btn-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-2.8-6.3"/><path d="M20.5 3.5v5h-5"/></svg></span>
+            <span class="btn-tt"><span class="btn-text">Reiniciar</span><span class="btn-sub">Esborra tot el progrés</span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="menu-donate">
+        <div class="donate-heart">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.4 1.8 5 5 5c2 0 3.2 1.1 4 2.3C9.8 6.1 11 5 13 5c3.2 0 4.7 3.4 3 6.7C19.5 16.4 12 21 12 21z"/></svg>
+        </div>
+        <div class="donate-copy">
+          <strong>T'ajuda a preparar l'oposició?</strong>
+          <span>Convida'm a un cafè i mantindràs viu el projecte ☕🔥</span>
+        </div>
+        <div class="donate-actions">
+          <a class="donate-btn paypal" href="https://paypal.me/furnedesigns" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21l1.6-9.5h4.2c2.6 0 4.2-1.4 4.2-3.7C16 5.4 14.3 4 11.6 4H6.8L4.2 21z"/><path d="M9 16h3.2c2.6 0 4.3-1.5 4.3-3.9"/></svg>
+            <span>PayPal</span>
+          </a>
+          <button class="donate-btn bizum" onclick="App.copyBizum()" title="Copiar número de Bizum">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/></svg>
+            <span>Bizum · +34&nbsp;635&nbsp;165&nbsp;846</span>
+          </button>
+        </div>
+      </div>
+
+      <p class="menu-credit">Oposició Bombers Generalitat · 2018 (Bases 81/18) · Fet per <a href="https://furnedesigns.com" target="_blank" rel="noopener">FurneDesigns</a> · Contacte: <a href="mailto:support@furnedesigns.com">support@furnedesigns.com</a><br>Foto: Javierito92 <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+    </div>
+  </div>
+
+  <!-- PANTALLA DE NIVELLS -->
+  <div id="screen-levels" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="App.showMenu()">← Menú</button>
+      <h2>NIVELLS DE FORMACIÓ</h2>
+      <div class="header-points"><span>⭐</span><span id="headerPoints">0</span></div>
+    </div>
+    <div class="levels-grid" id="levelsGrid"></div>
+  </div>
+
+  <!-- PANTALLA DE EXÀMENS -->
+  <div id="screen-exams" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="App.showMenu()">← Menú</button>
+      <h2>EXÀMENS DE NIVELL</h2>
+      <div class="header-points"><span>⭐</span><span id="headerPointsExams">0</span></div>
+    </div>
+    <div class="exams-grid" id="examsGrid"></div>
+  </div>
+
+  <!-- PANTALLA DE ESTADÍSTIQUES -->
+  <div id="screen-stats" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="App.showMenu()">← Menú</button>
+      <h2>LES TEVES ESTADÍSTIQUES</h2>
+    </div>
+    <div class="stats-content" id="statsContent"></div>
+  </div>
+
+  <!-- PANTALLA DE TEST/QUIZ -->
+  <div id="screen-quiz" class="screen">
+    <div class="quiz-header">
+      <button class="btn-back-quiz" onclick="App.exitQuiz()">✕</button>
+      <div class="quiz-info">
+        <span class="quiz-topic-name" id="quizTopicName"></span>
+        <span class="quiz-counter" id="quizCounter"></span>
+      </div>
+      <div class="quiz-points-live" id="quizPointsLive"><span>◆</span><span>0</span></div>
+    </div>
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+    <div class="quiz-timer-bar"><div class="quiz-timer-fill" id="quizTimerFill"></div></div>
+    <div class="quiz-body">
+      <div class="question-num" id="questionNum"></div>
+      <div class="question-text" id="questionText"></div>
+      <div class="options-grid" id="optionsGrid"></div>
+    </div>
+  </div>
+
+  <!-- PANTALLA DE RESULTATS -->
+  <div id="screen-results" class="screen">
+    <div class="results-container" id="resultsContainer">
+      <div class="results-header">
+        <div class="results-icon" id="resultsIcon"></div>
+        <h2 id="resultsTitle"></h2>
+        <p id="resultsSubtitle"></p>
+        <div class="results-score">
+          <div class="score-circle" id="scoreCircle">
+            <span class="score-num" id="scoreNum"></span>
+            <span class="score-denom" id="scoreDenom"></span>
+          </div>
+          <div class="score-stars" id="scoreStars"></div>
+        </div>
+        <div class="results-meta">
+          <div class="meta-item"><span>⭐</span> <span id="pointsEarned">+0 punts</span></div>
+          <div class="meta-item"><span>📊</span> <span id="percentScore">0%</span></div>
+        </div>
+      </div>
+      <div class="tips-section" id="tipsSection"></div>
+      <h3 class="review-title">📋 Revisió de Preguntes</h3>
+      <div class="review-list" id="reviewList"></div>
+      <div class="results-actions">
+        <button class="btn-action btn-primary" id="btnRepeat" onclick="App.repeatQuiz()">🔄 Repetir Test</button>
+        <button class="btn-action btn-secondary" id="btnNext" onclick="App.goNext()">➡️ Següent</button>
+        <button class="btn-action btn-info" onclick="App.showMenu()">🏠 Menú</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY D'ANIMACIÓ DE COMPLETAR NIVELL -->
+  <div id="overlay-levelcomplete" class="overlay hidden">
+    <div class="levelcomplete-container">
+      <div class="fireworks" id="fireworks"></div>
+      <div class="levelcomplete-content">
+        <div class="levelcomplete-icon">🏆</div>
+        <h1 class="levelcomplete-title">NIVELL COMPLETAT!</h1>
+        <p class="levelcomplete-sub" id="levelCompleteName"></p>
+        <div class="levelcomplete-stars" id="levelCompleteStars"></div>
+        <div class="levelcomplete-points">+<span id="levelCompletePoints"></span> punts</div>
+        <button class="btn-continue" onclick="App.closeOverlay()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY D'ANIMACIÓ D'EXAMEN DE NIVELL -->
+  <div id="overlay-examcomplete" class="overlay hidden">
+    <div class="examcomplete-container">
+      <div class="exam-fire-bg" id="examFireBg"></div>
+      <div class="examcomplete-content">
+        <div class="exam-badge">🔥</div>
+        <h1 class="exam-title">EXAMEN SUPERAT!</h1>
+        <p class="exam-sub" id="examCompleteName"></p>
+        <div class="exam-score" id="examScore"></div>
+        <div class="exam-stars" id="examCompleteStars"></div>
+        <div class="exam-points">+<span id="examCompletePoints"></span> punts</div>
+        <button class="btn-continue-fire" onclick="App.closeOverlay()">💪 Continuar!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY FINAL EPIC -->
+  <div id="overlay-final" class="overlay hidden">
+    <div class="final-container">
+      <div class="final-fire-show" id="finalFireShow"></div>
+      <div class="final-content">
+        <div class="final-badge">🏅</div>
+        <h1 class="final-title">FELICITATS, BOMBER!</h1>
+        <p class="final-sub">Has completat tots els temes del temari</p>
+        <div class="final-stats" id="finalStats"></div>
+        <button class="btn-final" onclick="App.closeOverlay()">🔥 Increïble!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CANVAS DE CONFETTI -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <script src="app.js"></script>
+</body>
+</html>
